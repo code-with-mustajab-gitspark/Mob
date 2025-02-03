@@ -1,21 +1,69 @@
 import { Button, View, Text, Input, YStack, XStack, Separator } from '@my/ui'
-import { Image, ScrollView } from 'react-native'
+import { Image, ScrollView, Keyboard, Modal } from 'react-native'
 import { StatusBar } from '../components/statusbar'
 import Bar from '../components/bar'
 import React, { useState } from 'react'
 
 export function HomeScreen() {
   const [isSearchFocused, setSearchFocused] = useState(false)
+  const [isPopupVisible, setPopupVisible] = useState(false)
+  const [isSheetVisible, setSheetVisible] = useState(false)
   const percentage = 85
   const percentage2 = 45
   const percentage3 = 20
   const percentage4 = 10
   const percentage5 = 2
+  const [rating, setRating] = useState(0)
+  const [notes, setNotes] = useState('')
 
+  const handleAddToCart = () => {
+    Keyboard.dismiss()
+    setPopupVisible(true)
+    setTimeout(() => {
+      setPopupVisible(false)
+    }, 2000)
+  }
+
+  const handleSubmitFeedback = () => {
+    console.log(`Rating: ${rating}, Notes: ${notes}`)
+    setSheetVisible(false)
+    setNotes('')
+    setRating(0)
+  }
 
   return (
     <>
       <StatusBar />
+
+      {/* Popup Notification */}
+      {isPopupVisible && (
+        <View
+          style={{
+            backgroundColor: '#202020',
+            padding: 10,
+            alignItems: 'center',
+            borderRadius: 0,
+            zIndex: 1000,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingLeft: 24,
+            paddingRight: 24,
+          }}
+        >
+          <Text style={{ color: '#FFFFFF', fontWeight: '400', fontSize: 16 }}>Added to Cart</Text>
+          <Text
+            style={{
+              color: '#FFFFFF',
+              fontWeight: '700',
+              fontSize: 14,
+              textDecorationLine: 'underline',
+            }}
+          >
+            VIEW CART
+          </Text>
+        </View>
+      )}
+
       <ScrollView style={{ backgroundColor: '#FFFFFF' }}>
         {/* Product Image and Details */}
         <View style={{ alignItems: 'center', padding: 16, position: 'relative' }}>
@@ -276,6 +324,7 @@ export function HomeScreen() {
         {/* Add to Cart Button */}
         <View style={{ paddingHorizontal: 16, marginTop: 24, marginLeft: 24, marginRight: 24 }}>
           <Button
+            onPress={handleAddToCart}
             style={{
               backgroundColor: '#E6B022',
               padding: 16,
@@ -433,155 +482,797 @@ export function HomeScreen() {
               }}
             >
               {' '}
-              Out of 5
+              211 ratings
             </Text>
           </View>
         </YStack>
+
+        {/* Percentage Line */}
 
         <YStack style={{ marginTop: 30, marginLeft: 24, marginRight: 24 }}>
           <XStack style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text
+            <Text
               style={{
                 fontSize: 16,
                 fontWeight: '700',
-                color: '#202020'
-              }}>5  ⭐</Text>
-              <View style={{  marginLeft: 10, marginRight: 20 }}>
-                <View style={{ height: 4, width: 276, backgroundColor: '#E0E0E0', borderRadius: 5, marginTop: 8 }}>
-                  <View
-                    style={{
-                      height: '100%',
-                      width: `${percentage}%`,
-                      backgroundColor: '#073937',
-                      borderRadius: 5,
-                    }}
-                  />
-                </View>
+                color: '#202020',
+              }}
+            >
+              5 ⭐
+            </Text>
+            <View style={{ marginLeft: 10, marginRight: 20 }}>
+              <View
+                style={{
+                  height: 4,
+                  width: 276,
+                  backgroundColor: '#E0E0E0',
+                  borderRadius: 5,
+                  marginTop: 8,
+                }}
+              >
+                <View
+                  style={{
+                    height: '100%',
+                    width: `${percentage}%`,
+                    backgroundColor: '#073937',
+                    borderRadius: 5,
+                  }}
+                />
               </View>
-              <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>
-               85%
-              </Text>
+            </View>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>85%</Text>
           </XStack>
 
           <XStack style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
-              <Text
+            <Text
               style={{
                 fontSize: 16,
                 fontWeight: '700',
-                color: '#202020'
-              }}>4  ⭐</Text>
-              <View style={{  marginLeft: 10, marginRight: 20 }}>
-                <View style={{ height: 4, width: 276, backgroundColor: '#E0E0E0', borderRadius: 5, marginTop: 8 }}>
-                  <View
-                    style={{
-                      height: '100%',
-                      width: `${percentage2}%`,
-                      backgroundColor: '#073937',
-                      borderRadius: 5,
-                    }}
-                  />
-                </View>
+                color: '#202020',
+              }}
+            >
+              4 ⭐
+            </Text>
+            <View style={{ marginLeft: 10, marginRight: 20 }}>
+              <View
+                style={{
+                  height: 4,
+                  width: 276,
+                  backgroundColor: '#E0E0E0',
+                  borderRadius: 5,
+                  marginTop: 8,
+                }}
+              >
+                <View
+                  style={{
+                    height: '100%',
+                    width: `${percentage2}%`,
+                    backgroundColor: '#073937',
+                    borderRadius: 5,
+                  }}
+                />
               </View>
-              <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>
-               45%
-              </Text>
+            </View>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>45%</Text>
           </XStack>
 
           <XStack style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
-              <Text
+            <Text
               style={{
                 fontSize: 16,
                 fontWeight: '700',
-                color: '#202020'
-              }}>3  ⭐</Text>
-              <View style={{  marginLeft: 10, marginRight: 20 }}>
-                <View style={{ height: 4, width: 276, backgroundColor: '#E0E0E0', borderRadius: 5, marginTop: 8 }}>
-                  <View
-                    style={{
-                      height: '100%',
-                      width: `${percentage3}%`,
-                      backgroundColor: '#073937',
-                      borderRadius: 5,
-                    }}
-                  />
-                </View>
+                color: '#202020',
+              }}
+            >
+              3 ⭐
+            </Text>
+            <View style={{ marginLeft: 10, marginRight: 20 }}>
+              <View
+                style={{
+                  height: 4,
+                  width: 276,
+                  backgroundColor: '#E0E0E0',
+                  borderRadius: 5,
+                  marginTop: 8,
+                }}
+              >
+                <View
+                  style={{
+                    height: '100%',
+                    width: `${percentage3}%`,
+                    backgroundColor: '#073937',
+                    borderRadius: 5,
+                  }}
+                />
               </View>
-              <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>
-               20%
-              </Text>
+            </View>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>20%</Text>
           </XStack>
 
           <XStack style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
-              <Text
+            <Text
               style={{
                 fontSize: 16,
                 fontWeight: '700',
-                color: '#202020'
-              }}>2  ⭐</Text>
-              <View style={{  marginLeft: 10, marginRight: 20 }}>
-                <View style={{ height: 4, width: 276, backgroundColor: '#E0E0E0', borderRadius: 5, marginTop: 8 }}>
-                  <View
-                    style={{
-                      height: '100%',
-                      width: `${percentage4}%`,
-                      backgroundColor: '#073937',
-                      borderRadius: 5,
-                    }}
-                  />
-                </View>
+                color: '#202020',
+              }}
+            >
+              2 ⭐
+            </Text>
+            <View style={{ marginLeft: 10, marginRight: 20 }}>
+              <View
+                style={{
+                  height: 4,
+                  width: 276,
+                  backgroundColor: '#E0E0E0',
+                  borderRadius: 5,
+                  marginTop: 8,
+                }}
+              >
+                <View
+                  style={{
+                    height: '100%',
+                    width: `${percentage4}%`,
+                    backgroundColor: '#073937',
+                    borderRadius: 5,
+                  }}
+                />
               </View>
-              <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>
-              10%
-              </Text>
+            </View>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>10%</Text>
           </XStack>
 
           <XStack style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
-              <Text
+            <Text
               style={{
                 fontSize: 16,
                 fontWeight: '700',
-                color: '#202020'
-              }}>1  ⭐</Text>
-              <View style={{  marginLeft: 10, marginRight: 27 }}>
-                <View style={{ height: 4, width: 276, backgroundColor: '#E0E0E0', borderRadius: 5, marginTop: 8 }}>
-                  <View
-                    style={{
-                      height: '100%',
-                      width: `${percentage5}%`,
-                      backgroundColor: '#073937',
-                      borderRadius: 5,
-                    }}
-                  />
-                </View>
+                color: '#202020',
+              }}
+            >
+              1 ⭐
+            </Text>
+            <View style={{ marginLeft: 10, marginRight: 27 }}>
+              <View
+                style={{
+                  height: 4,
+                  width: 276,
+                  backgroundColor: '#E0E0E0',
+                  borderRadius: 5,
+                  marginTop: 8,
+                }}
+              >
+                <View
+                  style={{
+                    height: '100%',
+                    width: `${percentage5}%`,
+                    backgroundColor: '#073937',
+                    borderRadius: 5,
+                  }}
+                />
               </View>
-              <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>
-               2%
-              </Text>
+            </View>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>2%</Text>
           </XStack>
         </YStack>
 
-        {/* Reviews Section */}
-        <View style={{ paddingHorizontal: 16, marginTop: 32 }}>
-          <Text style={{ fontSize: 22, fontWeight: '700' }}>Reviews</Text>
-          <View style={{ marginTop: 16 }}>
-            <Text style={{ fontSize: 14, fontWeight: '400' }}>Jhon Rolly: ⭐⭐⭐⭐⭐</Text>
-            <Text style={{ fontSize: 12, color: '#666' }}>
-              This jacket is very comfortable. I love it!
+        <XStack
+          style={{
+            marginTop: 25,
+            marginLeft: 24,
+            marginRight: 24,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Text style={{ fontSize: 14, fontWeight: '600', color: 'rgba(7, 57, 55, 1)' }}>
+            520 Review
+          </Text>
+          <View
+            onPress={() => setSheetVisible(true)}
+            style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}
+          >
+            <Text style={{ fontSize: 14, fontWeight: '600', color: 'rgba(77, 77, 77, 1)' }}>
+              Write for you
             </Text>
+            <Image source={{ uri: '/Images/edit.png' }} style={{ width: 13, height: 13 }}></Image>
           </View>
-          <View style={{ marginTop: 16 }}>
-            <Text style={{ fontSize: 14, fontWeight: '400' }}>Edward Colin: ⭐⭐⭐⭐</Text>
-            <Text style={{ fontSize: 12, color: '#666' }}>
-              I am very satisfied with this jacket because it fits well. Thank you!
-            </Text>
-          </View>
-        </View>
+        </XStack>
 
-        {/* Percentage Line */}
-        
+        <YStack
+          style={{
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            gap: 15,
+            marginTop: 16,
+            marginLeft: 24,
+            marginRight: 24,
+          }}
+        >
+          <Image source={{ uri: '/Images/people-1.png' }} style={{ width: 40, height: 40 }}></Image>
+          <XStack flexDirection="column" gap={5}>
+            <Text style={{ fontSize: 14, fontWeight: '600', color: '#202020' }}>Jhon Rolly</Text>
+            <Image
+              source={{ uri: '/Images/stars-2.png' }}
+              style={{ width: 63, height: 11 }}
+            ></Image>
+          </XStack>
+          <Text style={{ fontSize: 8, fontWeight: '600', color: 'rgba(32, 32, 32, 1)' }}>
+            5 OUT OF 5, May 15, 2022
+          </Text>
+        </YStack>
+        <Text
+          style={{
+            fontSize: 10,
+            fontWeight: '500',
+            color: 'rgba(77, 77, 77, 1)',
+            marginTop: 10,
+            marginLeft: 79,
+          }}
+        >
+          This jacket is very comfortable when I wear it for riding, <br />
+          not hot and very cool for people to see.
+        </Text>
+        <Separator
+          style={{ marginTop: 21, marginLeft: 24, marginRight: 24, color: 'C4C4C4', height: 3 }}
+        />
+
+        <YStack
+          style={{
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            gap: 15,
+            marginTop: 16,
+            marginLeft: 24,
+            marginRight: 24,
+          }}
+        >
+          <Image source={{ uri: '/Images/people-2.png' }} style={{ width: 40, height: 40 }}></Image>
+          <XStack flexDirection="column" gap={5}>
+            <Text style={{ fontSize: 14, fontWeight: '600', color: '#202020' }}>Edward Collin</Text>
+            <Image
+              source={{ uri: '/Images/stars-2.png' }}
+              style={{ width: 63, height: 11 }}
+            ></Image>
+          </XStack>
+          <Text style={{ fontSize: 8, fontWeight: '600', color: 'rgba(32, 32, 32, 1)' }}>
+            4 OUT OF 5, May 5, 2022
+          </Text>
+        </YStack>
+        <Text
+          style={{
+            fontSize: 10,
+            fontWeight: '500',
+            color: 'rgba(77, 77, 77, 1)',
+            marginTop: 10,
+            marginLeft: 79,
+          }}
+        >
+          I am very satisfied with ordering this jacket because it <br />
+          fits what I want, thank you.
+        </Text>
+        <Separator
+          style={{ marginTop: 21, marginLeft: 24, marginRight: 24, color: 'C4C4C4', height: 3 }}
+        />
+
+        <YStack
+          style={{
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            gap: 15,
+            marginTop: 16,
+            marginLeft: 24,
+            marginRight: 24,
+          }}
+        >
+          <Image source={{ uri: '/Images/people-2.png' }} style={{ width: 40, height: 40 }}></Image>
+          <XStack flexDirection="column" gap={5}>
+            <Text style={{ fontSize: 14, fontWeight: '600', color: '#202020' }}>Edward Collin</Text>
+            <Image
+              source={{ uri: '/Images/stars-2.png' }}
+              style={{ width: 63, height: 11 }}
+            ></Image>
+          </XStack>
+          <Text style={{ fontSize: 8, fontWeight: '600', color: 'rgba(32, 32, 32, 1)' }}>
+            4 OUT OF 5, May 5, 2022
+          </Text>
+        </YStack>
+        <Text
+          style={{
+            fontSize: 10,
+            fontWeight: '500',
+            color: 'rgba(77, 77, 77, 1)',
+            marginTop: 10,
+            marginLeft: 79,
+          }}
+        >
+          I am very satisfied with ordering this jacket because it <br />
+          fits what I want, thank you.
+        </Text>
+        <Separator
+          style={{ marginTop: 21, marginLeft: 24, marginRight: 24, color: 'C4C4C4', height: 3 }}
+        />
       </ScrollView>
 
-      <View style={{ marginTop: 340 }}>
+      <Text
+        style={{ fontSize: 16, fontWeight: '700', color: '#202020', marginTop: 32, marginLeft: 24 }}
+      >
+        Add on
+      </Text>
+
+      {/* Add on Products Section */}
+      <YStack
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: 18,
+          marginLeft: 24,
+          marginRight: 24,
+        }}
+      >
+        <View
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Text
+            style={{
+              position: 'absolute',
+              top: 16,
+              left: 16,
+              fontSize: 14,
+              fontWeight: '700',
+              zIndex: 1,
+            }}
+            color="#FF3636"
+          >
+            Recommended
+          </Text>
+          <Image
+            source={{ uri: '/Images/darren.png' }}
+            style={{ width: 182.5, zIndex: 0, height: 244 }}
+          />
+          <Image
+            source={{ uri: '/Images/heart-icon.png' }}
+            style={{
+              width: 18,
+              height: 18,
+              position: 'absolute',
+              top: 207,
+              left: 146,
+              zIndex: 1,
+            }}
+          />
+        </View>
+
+        <View
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Text
+            style={{
+              position: 'absolute',
+              top: 16,
+              left: 16,
+              fontSize: 14,
+              fontWeight: '700',
+              zIndex: 1,
+            }}
+            color="#FF3636"
+          >
+            Recommended
+          </Text>
+          <Image
+            source={{ uri: '/Images/skyblue-bag.png' }}
+            style={{ width: 182.5, zIndex: 0, height: 244 }}
+          />
+          <Image
+            source={{ uri: '/Images/heart-icon.png' }}
+            style={{
+              width: 18,
+              height: 18,
+              position: 'absolute',
+              top: 207,
+              left: 146,
+              zIndex: 1,
+            }}
+          />
+        </View>
+      </YStack>
+
+      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
+        <View>
+          <Text fontSize={16} fontWeight="400" color="#202020">
+            Oxean Uedora Jacket
+          </Text>
+
+          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
+            $21.45
+          </Text>
+        </View>
+
+        <View>
+          <Text fontSize={16} fontWeight="400" color="#202020">
+            Vuki Handi Bag
+          </Text>
+
+          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
+            $16.20
+          </Text>
+        </View>
+      </YStack>
+
+      <YStack
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: 18,
+          marginLeft: 24,
+          marginRight: 24,
+        }}
+      >
+        <View
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Text
+            style={{
+              position: 'absolute',
+              top: 16,
+              left: 16,
+              fontSize: 14,
+              fontWeight: '700',
+              zIndex: 1,
+            }}
+            color="#FF3636"
+          >
+            Recommended
+          </Text>
+          <Image
+            source={{ uri: '/Images/darren.png' }}
+            style={{ width: 182.5, zIndex: 0, height: 244 }}
+          />
+          <Image
+            source={{ uri: '/Images/heart-icon.png' }}
+            style={{
+              width: 18,
+              height: 18,
+              position: 'absolute',
+              top: 207,
+              left: 146,
+              zIndex: 1,
+            }}
+          />
+        </View>
+
+        <View
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Text
+            style={{
+              position: 'absolute',
+              top: 16,
+              left: 16,
+              fontSize: 14,
+              fontWeight: '700',
+              zIndex: 1,
+            }}
+            color="#FF3636"
+          >
+            Recommended
+          </Text>
+          <Image
+            source={{ uri: '/Images/skyblue-bag.png' }}
+            style={{ width: 182.5, zIndex: 0, height: 244 }}
+          />
+          <Image
+            source={{ uri: '/Images/heart-icon.png' }}
+            style={{
+              width: 18,
+              height: 18,
+              position: 'absolute',
+              top: 207,
+              left: 146,
+              zIndex: 1,
+            }}
+          />
+        </View>
+      </YStack>
+
+      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
+        <View>
+          <Text fontSize={16} fontWeight="400" color="#202020">
+            Oxean Uedora Jacket
+          </Text>
+
+          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
+            $21.45
+          </Text>
+        </View>
+
+        <View>
+          <Text fontSize={16} fontWeight="400" color="#202020">
+            Vuki Handi Bag
+          </Text>
+
+          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
+            $16.20
+          </Text>
+        </View>
+      </YStack>
+
+      <YStack
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: 18,
+          marginLeft: 24,
+          marginRight: 24,
+        }}
+      >
+        <View
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Text
+            style={{
+              position: 'absolute',
+              top: 16,
+              left: 16,
+              fontSize: 14,
+              fontWeight: '700',
+              zIndex: 1,
+            }}
+            color="#FF3636"
+          >
+            Recommended
+          </Text>
+          <Image
+            source={{ uri: '/Images/darren.png' }}
+            style={{ width: 182.5, zIndex: 0, height: 244 }}
+          />
+          <Image
+            source={{ uri: '/Images/heart-icon.png' }}
+            style={{
+              width: 18,
+              height: 18,
+              position: 'absolute',
+              top: 207,
+              left: 146,
+              zIndex: 1,
+            }}
+          />
+        </View>
+
+        <View
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Text
+            style={{
+              position: 'absolute',
+              top: 16,
+              left: 16,
+              fontSize: 14,
+              fontWeight: '700',
+              zIndex: 1,
+            }}
+            color="#FF3636"
+          >
+            Recommended
+          </Text>
+          <Image
+            source={{ uri: '/Images/skyblue-bag.png' }}
+            style={{ width: 182.5, zIndex: 0, height: 244 }}
+          />
+          <Image
+            source={{ uri: '/Images/heart-icon.png' }}
+            style={{
+              width: 18,
+              height: 18,
+              position: 'absolute',
+              top: 207,
+              left: 146,
+              zIndex: 1,
+            }}
+          />
+        </View>
+      </YStack>
+
+      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
+        <View>
+          <Text fontSize={16} fontWeight="400" color="#202020">
+            Oxean Uedora Jacket
+          </Text>
+
+          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
+            $21.45
+          </Text>
+        </View>
+
+        <View>
+          <Text fontSize={16} fontWeight="400" color="#202020">
+            Vuki Handi Bag
+          </Text>
+
+          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
+            $16.20
+          </Text>
+        </View>
+      </YStack>
+
+      <YStack
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: 18,
+          marginLeft: 24,
+          marginRight: 24,
+        }}
+      >
+        <View
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Text
+            style={{
+              position: 'absolute',
+              top: 16,
+              left: 16,
+              fontSize: 14,
+              fontWeight: '700',
+              zIndex: 1,
+            }}
+            color="#FF3636"
+          >
+            Recommended
+          </Text>
+          <Image
+            source={{ uri: '/Images/darren.png' }}
+            style={{ width: 182.5, zIndex: 0, height: 244 }}
+          />
+          <Image
+            source={{ uri: '/Images/heart-icon.png' }}
+            style={{
+              width: 18,
+              height: 18,
+              position: 'absolute',
+              top: 207,
+              left: 146,
+              zIndex: 1,
+            }}
+          />
+        </View>
+
+        <View
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Text
+            style={{
+              position: 'absolute',
+              top: 16,
+              left: 16,
+              fontSize: 14,
+              fontWeight: '700',
+              zIndex: 1,
+            }}
+            color="#FF3636"
+          >
+            Recommended
+          </Text>
+          <Image
+            source={{ uri: '/Images/skyblue-bag.png' }}
+            style={{ width: 182.5, zIndex: 0, height: 244 }}
+          />
+          <Image
+            source={{ uri: '/Images/heart-icon.png' }}
+            style={{
+              width: 18,
+              height: 18,
+              position: 'absolute',
+              top: 207,
+              left: 146,
+              zIndex: 1,
+            }}
+          />
+        </View>
+      </YStack>
+
+      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
+        <View>
+          <Text fontSize={16} fontWeight="400" color="#202020">
+            Oxean Uedora Jacket
+          </Text>
+
+          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
+            $21.45
+          </Text>
+        </View>
+
+        <View>
+          <Text fontSize={16} fontWeight="400" color="#202020">
+            Vuki Handi Bag
+          </Text>
+
+          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
+            $16.20
+          </Text>
+        </View>
+      </YStack>
+
+      {/* Bottom Sheet */}
+      <Modal
+        visible={isSheetVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setSheetVisible(false)}
+      >
+        <View
+          style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+        >
+          <View
+            style={{
+              backgroundColor: '#FFFFFF',
+              padding: 20,
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+            }}
+          >
+            {' '}
+            <Text style={{ fontSize: 20, fontWeight: '700', marginBottom: 10 }}>Rate & Review</Text>
+            <Image
+              source={{ uri: '/Images/darren.png' }}
+              style={{ width: 182.5, zIndex: 0, height: 244 }}
+            />
+            <Text style={{ marginBottom: 10 }}>How was your experience shopping with us?</Text>
+            <XStack style={{ marginBottom: 10 }}>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Button key={star} onPress={() => setRating(star)}>
+                  <Text style={{ fontSize: 30, color: star <= rating ? '#FFD700' : '#CCCCCC' }}>
+                    ★
+                  </Text>
+                </Button>
+              ))}
+            </XStack>
+            <Text>NOTES</Text>
+            <Input
+              value={notes}
+              onChangeText={setNotes}
+              placeholder="Write your feedback here..."
+              maxLength={1200}
+              style={{
+                height: 100,
+                borderColor: '#CCCCCC',
+                borderWidth: 1,
+                borderRadius: 5,
+                marginBottom: 10,
+              }}
+            />
+            <Button
+              onPress={handleSubmitFeedback}
+              style={{ backgroundColor: '#E6B022', padding: 10, borderRadius: 5 }}
+            >
+              <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>Submit Feedback</Text>
+            </Button>
+          </View>
+        </View>
+      </Modal>
+
+      <View style={{ marginTop: 52 }}>
         <Bar />
       </View>
     </>
