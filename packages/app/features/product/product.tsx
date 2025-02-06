@@ -28,29 +28,29 @@ export function ProductScreen() {
 
       {/* Popup Notification */}
       {isPopupVisible && (
-          <View
-            style={{
-              backgroundColor: '#202020',
-              padding: 10,
-              alignItems: 'center',
-              borderRadius: 0,
-              zIndex: 1000,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingLeft: 24,
-              paddingRight: 24,
-            }}
-          >
-            <Text style={{ color: '#FFFFFF', fontWeight: '400', fontSize: 16 }}>Added to Cart</Text>
-            <Text style={{ color: '#FFFFFF', fontWeight: '700', fontSize: 14, textDecorationLine: 'underline' }}>VIEW CART</Text>
-          </View>
-        )}
+        <View
+          style={{
+            backgroundColor: '#202020',
+            padding: 10,
+            alignItems: 'center',
+            borderRadius: 0,
+            zIndex: 1000,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingLeft: 24,
+            paddingRight: 24,
+          }}
+        >
+          <Text style={{ color: '#FFFFFF', fontWeight: '400', fontSize: 16 }}>Added to Cart</Text>
+          <Text style={{ color: '#FFFFFF', fontWeight: '700', fontSize: 14, textDecorationLine: 'underline' }}>VIEW CART</Text>
+        </View>
+      )}
 
 
 
       <ScrollView style={{ backgroundColor: '#FFFFFF' }}>
         {/* Product Image and Details */}
-        <View style={{ alignItems: 'center',  position: 'relative' }}>
+        <View style={{ alignItems: 'center', position: 'relative' }}>
           <Image
             source={{ uri: '/Images/coat-shirt.png' }} // Replace with actual image URI
             style={{ width: 430, height: 487, resizeMode: 'contain' }}
@@ -322,7 +322,7 @@ export function ProductScreen() {
           </Button>
         </View>
 
-        
+
 
         {/* Recommended Products Section */}
         <YStack
