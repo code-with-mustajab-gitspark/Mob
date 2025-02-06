@@ -1,17 +1,22 @@
 import { Button, View, Text, Input, YStack, XStack, Separator } from '@my/ui'
-import { Image, ScrollView, Keyboard } from 'react-native'
+import { Image, ScrollView, Keyboard, Modal, TouchableOpacity } from 'react-native'
 import { StatusBar } from '../components/statusbar'
 import Bar from '../components/bar'
 import React, { useState } from 'react'
+import { Link } from 'solito/link'
+
 
 export function ProductScreen() {
   const [isSearchFocused, setSearchFocused] = useState(false)
   const [isPopupVisible, setPopupVisible] = useState(false)
+  const [isSheetVisible, setSheetVisible] = useState(false)
   const percentage = 85
   const percentage2 = 45
   const percentage3 = 20
   const percentage4 = 10
   const percentage5 = 2
+  const [rating, setRating] = useState(0)
+  const [notes, setNotes] = useState('')
 
   const handleAddToCart = () => {
     Keyboard.dismiss()
@@ -21,36 +26,54 @@ export function ProductScreen() {
     }, 2000)
   }
 
+  const handleSubmitFeedback = () => {
+    console.log(`Rating: ${rating}, Notes: ${notes}`)
+    setSheetVisible(false)
+    setNotes('')
+    setRating(0)
+  }
+
   return (
     <>
       <StatusBar />
 
-
       {/* Popup Notification */}
       {isPopupVisible && (
-          <View
+        <View
+          style={{
+            backgroundColor: '#202020',
+            padding: 10,
+            alignItems: 'center',
+            borderRadius: 0,
+            zIndex: 1000,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingLeft: 24,
+            paddingRight: 24,
+          }}
+        >
+          <Text
+            style={{ color: '#FFFFFF', fontWeight: '400', fontSize: 16, fontFamily: 'Urbanist' }}
+          >
+            Added to Cart
+          </Text>
+          <Text
             style={{
-              backgroundColor: '#202020',
-              padding: 10,
-              alignItems: 'center',
-              borderRadius: 0,
-              zIndex: 1000,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingLeft: 24,
-              paddingRight: 24,
+              color: '#FFFFFF',
+              fontWeight: '700',
+              fontSize: 14,
+              textDecorationLine: 'underline',
+              fontFamily: 'Urbanist',
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontWeight: '400', fontSize: 16 }}>Added to Cart</Text>
-            <Text style={{ color: '#FFFFFF', fontWeight: '700', fontSize: 14, textDecorationLine: 'underline' }}>VIEW CART</Text>
-          </View>
-        )}
-
-
+            VIEW CART
+          </Text>
+        </View>
+      )}
 
       <ScrollView style={{ backgroundColor: '#FFFFFF' }}>
         {/* Product Image and Details */}
-        <View style={{ alignItems: 'center',  position: 'relative' }}>
+        <View style={{ alignItems: 'center', padding: 16, position: 'relative' }}>
           <Image
             source={{ uri: '/Images/coat-shirt.png' }} // Replace with actual image URI
             style={{ width: 430, height: 487, resizeMode: 'contain' }}
@@ -104,18 +127,33 @@ export function ProductScreen() {
             alignItems: 'flex-end',
           }}
         >
-          <Text style={{ fontSize: 14, fontWeight: '400', color: 'rgba(30, 30, 30, 1)' }}>
+          <Text
+            style={{
+              fontSize: 14,
+              fontWeight: '400',
+              color: 'rgba(30, 30, 30, 1)',
+              fontFamily: 'Urbanist',
+            }}
+          >
             ⭐ 4.9
             <Text
               style={{
                 color: 'rgba(107, 107, 107, 1)',
+                fontFamily: 'Urbanist',
               }}
             >
               {''} (42 reviews)
             </Text>
           </Text>
 
-          <Text style={{ fontSize: 20, fontWeight: '400', color: 'rgba(32, 32, 32, 1)' }}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: '400',
+              color: 'rgba(32, 32, 32, 1)',
+              fontFamily: 'Urbanist',
+            }}
+          >
             $32.41
           </Text>
         </YStack>
@@ -127,6 +165,7 @@ export function ProductScreen() {
             color: 'rgba(27, 27, 27, 1)',
             marginTop: 8,
             marginLeft: 24,
+            fontFamily: 'Urbanist',
           }}
         >
           Casual Breeze Suit
@@ -134,7 +173,14 @@ export function ProductScreen() {
         {/* Size and Color Selection */}
 
         <View style={{ marginTop: 24, marginLeft: 24, marginRight: 24 }}>
-          <Text style={{ fontSize: 16, fontWeight: '700', color: 'rgba(32, 32, 32, 1)' }}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: '700',
+              color: 'rgba(32, 32, 32, 1)',
+              fontFamily: 'Urbanist',
+            }}
+          >
             Size
           </Text>
           <XStack style={{ gap: 8 }}>
@@ -148,6 +194,7 @@ export function ProductScreen() {
                 fontWeight: '700',
                 color: '#073937',
                 marginTop: 8,
+                fontFamily: 'Urbanist',
               }}
             >
               S (20)
@@ -164,6 +211,7 @@ export function ProductScreen() {
                 fontWeight: '700',
                 color: '#073937',
                 marginTop: 8,
+                fontFamily: 'Urbanist',
               }}
             >
               M (0)
@@ -180,6 +228,7 @@ export function ProductScreen() {
                 fontWeight: '700',
                 color: '#073937',
                 marginTop: 8,
+                fontFamily: 'Urbanist',
               }}
             >
               L (23)
@@ -202,7 +251,11 @@ export function ProductScreen() {
             </Button>
           </XStack>
 
-          <Text style={{ fontSize: 16, fontWeight: '600', marginTop: 16 }}>Color</Text>
+          <Text
+            style={{ fontSize: 16, fontWeight: '600', marginTop: 16, fontFamily: 'Inria Serif' }}
+          >
+            Color
+          </Text>
           <XStack style={{ gap: 8 }}>
             <Button
               style={{
@@ -275,10 +328,25 @@ export function ProductScreen() {
         >
           <Image source={{ uri: '/Images/delivery.png' }} style={{ width: 47, height: 47 }} />
           <View>
-            <Text style={{ fontSize: 14, fontWeight: '700', color: '#1B1B1B' }}>
+            <Text
+              style={{
+                fontSize: 14,
+                fontWeight: '700',
+                color: '#1B1B1B',
+                fontFamily: 'Inria Serif',
+              }}
+            >
               Get it Tomorrow
             </Text>
-            <Text style={{ fontSize: 12, fontWeight: '400', color: '#202020', marginTop: 4 }}>
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: '400',
+                color: '#202020',
+                marginTop: 4,
+                fontFamily: 'Inria Serif',
+              }}
+            >
               Order in 3 h 54 m
             </Text>
           </View>
@@ -299,7 +367,9 @@ export function ProductScreen() {
           }}
         >
           <Image source={{ uri: '/Images/atm.png' }} style={{ width: 47, height: 47 }} />
-          <Text style={{ fontSize: 14, fontWeight: '700', color: '#1B1B1B' }}>
+          <Text
+            style={{ fontSize: 14, fontWeight: '700', color: '#1B1B1B', fontFamily: 'Inria Serif' }}
+          >
             Earn 5% Cashback with the Credit Card <br />
             Payment
           </Text>
@@ -316,13 +386,12 @@ export function ProductScreen() {
               fontWeight: '700',
               color: '#073937',
               borderRadius: 0,
+              fontFamily: 'Inria Serif',
             }}
           >
             Add to Cart
           </Button>
         </View>
-
-        
 
         {/* Recommended Products Section */}
         <YStack
@@ -655,7 +724,10 @@ export function ProductScreen() {
           <Text style={{ fontSize: 14, fontWeight: '600', color: 'rgba(7, 57, 55, 1)' }}>
             520 Review
           </Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          <View
+            onPress={() => setSheetVisible(true)}
+            style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}
+          >
             <Text style={{ fontSize: 14, fontWeight: '600', color: 'rgba(77, 77, 77, 1)' }}>
               Write for you
             </Text>
@@ -1197,211 +1269,139 @@ export function ProductScreen() {
         </View>
       </YStack>
 
-      <YStack
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: 18,
-          marginLeft: 24,
-          marginRight: 24,
-        }}
+      {/* Bottom Sheet */}
+      <Modal
+        visible={isSheetVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setSheetVisible(false)}
       >
         <View
-          style={{
-            position: 'relative',
-          }}
+          style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
         >
-          <Text
+          <View
             style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
+              backgroundColor: '#FFFFFF',
+              padding: 24,
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
             }}
-            color="#FF3636"
           >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/darren.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
+            <TouchableOpacity
+              onPress={() => setSheetVisible(false)}
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: 1,
+                marginTop: 10,
+                marginBottom: 10,
+              }}
+            >
+              <Text
+                style={{
+                  width: 48,
+                  height: 5,
+                  borderRadius: 100,
+                  backgroundColor: '#464646',
+                }}
+              ></Text>
+            </TouchableOpacity>{' '}
+            <Text style={{ fontSize: 20, fontWeight: '700', fontFamily: 'Inria Serif' }}>
+              Rate & Review
+            </Text>
+            <Image
+              source={{ uri: '/Images/suit-jacket.png' }}
+              style={{
+                width: 120,
+                height: 137,
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: 27,
+              }}
+            />
+            <Text
+              style={{
+                marginTop: 16,
+                fontSize: 16,
+                fontWeight: '400',
+                color: 'rgba(32, 32, 32, 1)',
+                textAlign: 'center',
+                fontFamily: 'Inria Serif',
+              }}
+            >
+              How was your experience shopping with us?
+            </Text>
+            <XStack style={{ marginTop: 34, marginLeft: 'auto', marginRight: 'auto' }}>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <View key={star} onPress={() => setRating(star)}>
+                  <Text style={{ fontSize: 30, color: star <= rating ? '#FFD700' : '#CCCCCC' }}>
+                    ★
+                  </Text>
+                </View>
+              ))}
+            </XStack>
+            <View
+              style={{
+                marginTop: 34,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: '400',
+                  color: '#1B1B1B',
+                  fontFamily: 'Inria Serif',
+                }}
+              >
+                NOTES
+              </Text>
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: '400',
+                  color: '#1B1B1B',
+                  fontFamily: 'Inria Serif',
+                }}
+              >
+                0/1200
+              </Text>
+            </View>
+            <Input
+              value={notes}
+              onChangeText={setNotes}
+              maxLength={1200}
+              multiline={true}
+              style={{
+                height: 129,
+                borderColor: '#CCCCCC',
+                borderWidth: 1,
+                borderRadius: 5,
+                marginTop: 8,
+                textAlignVertical: 'top',
+              }}
+            />
+            <Button
+              onPress={handleSubmitFeedback}
+              style={{ backgroundColor: '#E6B022', padding: 10, borderRadius: 0, marginTop: 24 }}
+            >
+              <Text
+                style={{
+                  color: '#073937',
+                  fontSize: 20,
+                  fontWeight: '700',
+                  fontFamily: 'Inria Serif',
+                }}
+              >
+                Submit Feedback
+              </Text>
+            </Button>
+          </View>
         </View>
-
-        <View
-          style={{
-            position: 'relative',
-          }}
-        >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/skyblue-bag.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-      </YStack>
-
-      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Oxean Uedora Jacket
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $21.45
-          </Text>
-        </View>
-
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Vuki Handi Bag
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $16.20
-          </Text>
-        </View>
-      </YStack>
-
-      <YStack
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: 18,
-          marginLeft: 24,
-          marginRight: 24,
-        }}
-      >
-        <View
-          style={{
-            position: 'relative',
-          }}
-        >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/darren.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-
-        <View
-          style={{
-            position: 'relative',
-          }}
-        >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/skyblue-bag.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-      </YStack>
-
-      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Oxean Uedora Jacket
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $21.45
-          </Text>
-        </View>
-
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Vuki Handi Bag
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $16.20
-          </Text>
-        </View>
-      </YStack>
+      </Modal>
 
       <View style={{ marginTop: 52 }}>
         <Bar />
