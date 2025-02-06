@@ -318,7 +318,7 @@ export function ProductScreen() {
               borderRadius: 0,
             }}
           >
-            Add to Cart
+            Add to Cart --
           </Button>
         </View>
 

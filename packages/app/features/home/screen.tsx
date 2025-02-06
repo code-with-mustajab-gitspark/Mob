@@ -1,10 +1,20 @@
+"use client"
 import { Button, View, Text, Input, YStack, XStack, Separator } from '@my/ui'
 import { Image, ScrollView, Keyboard, Modal } from 'react-native'
 import { StatusBar } from '../components/statusbar'
 import Bar from '../components/bar'
 import React, { useState } from 'react'
+import { useRouter } from 'solito/navigation'
 
 export function HomeScreen() {
+  const { push, replace, back, parseNextPath } = useRouter()
+
+  // const onPress = () => {
+  //   push('/')
+  // }
+  // const onGoBack = () => {
+  //   back()
+  // }
   const [isSearchFocused, setSearchFocused] = useState(false)
   const [isPopupVisible, setPopupVisible] = useState(false)
   const [isSheetVisible, setSheetVisible] = useState(false)
@@ -17,11 +27,7 @@ export function HomeScreen() {
   const [notes, setNotes] = useState('')
 
   const handleAddToCart = () => {
-    Keyboard.dismiss()
-    setPopupVisible(true)
-    setTimeout(() => {
-      setPopupVisible(false)
-    }, 2000)
+    push('/products')
   }
 
   const handleSubmitFeedback = () => {
