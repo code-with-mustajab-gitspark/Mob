@@ -39,41 +39,27 @@ export function ProductScreen() {
 
       {/* Popup Notification */}
       {isPopupVisible && (
-        <View
-          style={{
-            backgroundColor: '#202020',
-            padding: 10,
-            alignItems: 'center',
-            borderRadius: 0,
-            zIndex: 1000,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            paddingLeft: 24,
-            paddingRight: 24,
-          }}
-        >
-          <Text
-            style={{ color: '#FFFFFF', fontWeight: '400', fontSize: 16, fontFamily: 'Urbanist' }}
-          >
-            Added to Cart
-          </Text>
-          <Text
+          <View
             style={{
-              color: '#FFFFFF',
-              fontWeight: '700',
-              fontSize: 14,
-              textDecorationLine: 'underline',
-              fontFamily: 'Urbanist',
+              backgroundColor: '#202020',
+              padding: 10,
+              alignItems: 'center',
+              borderRadius: 0,
+              zIndex: 1000,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingLeft: 24,
+              paddingRight: 24,
             }}
           >
-            VIEW CART
-          </Text>
-        </View>
-      )}
+            <Text style={{ color: '#FFFFFF', fontWeight: '400', fontSize: 16 }}>Added to Cart</Text>
+            <Text style={{ color: '#FFFFFF', fontWeight: '700', fontSize: 14, textDecorationLine: 'underline' }}>VIEW CART</Text>
+          </View>
+        )}
 
       <ScrollView style={{ backgroundColor: '#FFFFFF' }}>
         {/* Product Image and Details */}
-        <View style={{ alignItems: 'center', padding: 16, position: 'relative' }}>
+        <View style={{ alignItems: 'center',  position: 'relative' }}>
           <Image
             source={{ uri: '/Images/coat-shirt.png' }} // Replace with actual image URI
             style={{ width: 430, height: 487, resizeMode: 'contain' }}
@@ -392,6 +378,8 @@ export function ProductScreen() {
             Add to Cart
           </Button>
         </View>
+
+        
 
         {/* Recommended Products Section */}
         <YStack
