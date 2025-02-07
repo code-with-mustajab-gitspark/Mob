@@ -1,6 +1,6 @@
 import { Button, View, Text, Input,  } from '@my/ui'
 import { TouchableOpacity, Image } from 'react-native'
-import { StatusBar } from '../components/statusbar'
+import { StatusBarz } from '../components/statusbarz'
 import Bar from '../components/bar'
 import React, { useState } from 'react'
 
@@ -12,8 +12,8 @@ export function SignInScreen() {
   const [isPasswordFocused, setPasswordFocused] = useState(false)
 
   return (
-    <>
-      <StatusBar />
+    <View style={{ backgroundColor: '#FFFBF2' }}>
+      <StatusBarz />
       <View>
         <View style={{ padding: 24 }}>
           <Text style={{ fontSize: 28, fontWeight: '700', color: '#073937', marginTop: 8 }}>
@@ -202,6 +202,6 @@ export function SignInScreen() {
       <View style={{ marginTop: 70 }}>
         <Bar />
       </View>
-    </>
+    </View>
   )
 }

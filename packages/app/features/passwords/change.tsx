@@ -13,7 +13,7 @@ export function ChangePasswordScreen() {
   const [isPasswordFocused, setPasswordFocused] = useState(false)
 
   return (
-    <>
+    <View style={{ backgroundColor: '#FFFBF2' }}>
       <StatusBarz />
       <View>
         <View style={{ padding: 24 }}>
@@ -129,6 +129,6 @@ export function ChangePasswordScreen() {
       <View style={{ marginTop: 340 }}>
         <Bar />
       </View>
-    </>
+    </View>
   )
 }

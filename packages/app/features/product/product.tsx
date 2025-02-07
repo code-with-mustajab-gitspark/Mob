@@ -5,8 +5,11 @@ import Bar from '../components/bar'
 import React, { useState } from 'react'
 import { Link } from 'solito/link'
 
+interface ProductScreenProps {
+  pagesMode?: boolean
+}
 
-export function ProductScreen() {
+export function ProductScreen({ pagesMode }: ProductScreenProps) {
   const [isSearchFocused, setSearchFocused] = useState(false)
   const [isPopupVisible, setPopupVisible] = useState(false)
   const [isSheetVisible, setSheetVisible] = useState(false)
@@ -59,9 +62,17 @@ export function ProductScreen() {
 
       <ScrollView style={{ backgroundColor: '#FFFFFF' }}>
         {/* Product Image and Details */}
-        <View style={{ alignItems: 'center',  position: 'relative' }}>
+        <View
+          style={{
+            alignItems: 'center',
+            paddingBottom: 16,
+            paddingRight: 16,
+            paddingLeft: 16,
+            position: 'relative',
+          }}
+        >
           <Image
-            source={{ uri: '/Images/coat-shirt.png' }} // Replace with actual image URI
+            source={{ uri: '/Images/coat-shirt.png' }}
             style={{ width: 430, height: 487, resizeMode: 'contain' }}
           />
           <Button
@@ -77,7 +88,9 @@ export function ProductScreen() {
               borderColor: '#CAC4BC57',
             }}
           >
-            <Text style={{ color: '#202020', fontSize: 18, fontWeight: '700' }}>←</Text>
+            <Link href="/homescreen">
+              <Text style={{ color: '#202020', fontSize: 18, fontWeight: '700' }}>←</Text>
+            </Link>
           </Button>
           <Image
             source={{ uri: '/Images/heart-icon.png' }}
@@ -87,7 +100,7 @@ export function ProductScreen() {
             source={{ uri: '/Images/Bag.png' }}
             style={{ width: 22.8, height: 24, position: 'absolute', top: 36, right: 66 }}
           />
-          <XStack style={{ position: 'absolute', top: 476, right: 187, gap: 8 }}>
+          <XStack style={{ position: 'absolute', top: 460, right: 187, gap: 8 }}>
             <View
               style={{ width: 8, height: 8, backgroundColor: '#073937', borderRadius: 100 }}
             ></View>
@@ -392,98 +405,122 @@ export function ProductScreen() {
             marginRight: 24,
           }}
         >
-          <View
-            style={{
-              position: 'relative',
-            }}
-          >
-            <Text
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+            <View
               style={{
-                position: 'absolute',
-                top: 16,
-                left: 16,
-                fontSize: 14,
-                fontWeight: '700',
-                zIndex: 1,
-              }}
-              color="#E6B022"
-            >
-              New
-            </Text>
-            <Image
-              source={{ uri: '/Images/darren.png' }}
-              style={{ width: 182.5, zIndex: 0, height: 244 }}
-            />
-            <Image
-              source={{ uri: '/Images/heart-icon.png' }}
-              style={{
-                width: 18,
-                height: 18,
-                position: 'absolute',
-                top: 207,
-                left: 146,
-                zIndex: 1,
-              }}
-            />
-          </View>
+                position: 'relative',
+               }}
+              >
+                <Text
+                  style={{
+                    position: 'absolute',
+                      top: 16,
+                      left: 16,
+                      fontSize: 14,
+                      fontWeight: '700',
+                      zIndex: 1,
+                      fontFamily: 'Inria Serif',
+                    }}
+                    color="#E6B022"
+                    >
+                     New
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/darren.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                  Oxean Uedora Jacket
+                 </Text>
 
-          <View
-            style={{
-              position: 'relative',
-            }}
-          >
-            <Text
-              style={{
-                position: 'absolute',
-                top: 16,
-                left: 16,
-                fontSize: 14,
-                fontWeight: '700',
-                zIndex: 1,
-              }}
-              color="#E6B022"
-            >
-              New
-            </Text>
-            <Image
-              source={{ uri: '/Images/skyblue-bag.png' }}
-              style={{ width: 182.5, zIndex: 0, height: 244 }}
-            />
-            <Image
-              source={{ uri: '/Images/heart-icon.png' }}
-              style={{
-                width: 18,
-                height: 18,
-                position: 'absolute',
-                top: 207,
-                left: 146,
-                zIndex: 1,
-              }}
-            />
-          </View>
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $21.45
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
+
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+              <View
+                style={{
+                  position: 'relative',
+                  }}
+                >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#E6B022"
+                  >
+                  New
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/skyblue-bag.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                    Vuki Handi Bag
+                </Text>
+
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $16.20
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
         </YStack>
 
-        <YStack flexDirection="row" mx={24} mt={18} gap={38}>
-          <View>
-            <Text fontSize={16} fontWeight="400" color="#202020">
-              Oxean Uedora Jacket
-            </Text>
-
-            <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-              $21.45
-            </Text>
-          </View>
-
-          <View>
-            <Text fontSize={16} fontWeight="400" color="#202020">
-              Vuki Handi Bag
-            </Text>
-
-            <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-              $16.20
-            </Text>
-          </View>
-        </YStack>
+        
 
         <Separator
           style={{ marginTop: 30, marginLeft: 24, marginRight: 24, color: '#EAEAEA', height: 1 }}
@@ -501,13 +538,14 @@ export function ProductScreen() {
           }}
         >
           <View style={{ flexDirection: 'row', gap: 20 }}>
-            <Text style={{ fontSize: 40, fontWeight: '700', color: '#202020' }}>4.5</Text>
+            <Text style={{ fontSize: 40, fontWeight: '700', color: '#202020', fontFamily: 'Inria Serif' }}>4.5</Text>
             <Text
               style={{
                 fontSize: 15,
                 fontWeight: '400',
                 color: 'rgba(32, 32, 32, 1)',
                 marginTop: 20,
+                fontFamily: 'Inria Serif'
               }}
             >
               {' '}
@@ -522,6 +560,7 @@ export function ProductScreen() {
                 fontWeight: '400',
                 color: 'rgba(32, 32, 32, 1)',
                 textAlign: 'right',
+                fontFamily: 'Inria Serif'
               }}
             >
               {' '}
@@ -539,6 +578,7 @@ export function ProductScreen() {
                 fontSize: 16,
                 fontWeight: '700',
                 color: '#202020',
+                fontFamily: 'Inria Serif'
               }}
             >
               5 ⭐
@@ -563,7 +603,7 @@ export function ProductScreen() {
                 />
               </View>
             </View>
-            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>85%</Text>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020', fontFamily: 'Inria Serif' }}>85%</Text>
           </XStack>
 
           <XStack style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
@@ -572,6 +612,7 @@ export function ProductScreen() {
                 fontSize: 16,
                 fontWeight: '700',
                 color: '#202020',
+                fontFamily: 'Inria Serif'
               }}
             >
               4 ⭐
@@ -596,7 +637,7 @@ export function ProductScreen() {
                 />
               </View>
             </View>
-            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>45%</Text>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020', fontFamily: 'Inria Serif' }}>45%</Text>
           </XStack>
 
           <XStack style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
@@ -605,6 +646,7 @@ export function ProductScreen() {
                 fontSize: 16,
                 fontWeight: '700',
                 color: '#202020',
+                fontFamily: 'Inria Serif'
               }}
             >
               3 ⭐
@@ -629,7 +671,7 @@ export function ProductScreen() {
                 />
               </View>
             </View>
-            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>20%</Text>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020', fontFamily: 'Inria Serif' }}>20%</Text>
           </XStack>
 
           <XStack style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
@@ -638,6 +680,7 @@ export function ProductScreen() {
                 fontSize: 16,
                 fontWeight: '700',
                 color: '#202020',
+                fontFamily: 'Inria Serif'
               }}
             >
               2 ⭐
@@ -662,7 +705,7 @@ export function ProductScreen() {
                 />
               </View>
             </View>
-            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>10%</Text>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020', fontFamily: 'Inria Serif' }}>10%</Text>
           </XStack>
 
           <XStack style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
@@ -671,6 +714,7 @@ export function ProductScreen() {
                 fontSize: 16,
                 fontWeight: '700',
                 color: '#202020',
+                fontFamily: 'Inria Serif'
               }}
             >
               1 ⭐
@@ -695,7 +739,7 @@ export function ProductScreen() {
                 />
               </View>
             </View>
-            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020' }}>2%</Text>
+            <Text style={{ fontSize: 16, fontWeight: '700', color: '#202020', fontFamily: 'Inria Serif' }}>2%</Text>
           </XStack>
         </YStack>
 
@@ -709,7 +753,7 @@ export function ProductScreen() {
             alignItems: 'center',
           }}
         >
-          <Text style={{ fontSize: 14, fontWeight: '600', color: 'rgba(7, 57, 55, 1)' }}>
+          <Text style={{ fontSize: 14, fontWeight: '600', color: 'rgba(7, 57, 55, 1)'}}>
             520 Review
           </Text>
           <View
@@ -839,423 +883,521 @@ export function ProductScreen() {
       </ScrollView>
 
       <Text
-        style={{ fontSize: 16, fontWeight: '700', color: '#202020', marginTop: 32, marginLeft: 24 }}
+        style={{ fontSize: 16, 
+          fontWeight: '700', 
+          color: '#202020', 
+          marginTop: 32, 
+          marginLeft: 24,
+          fontFamily: 'Inria Serif'
+         }}
       >
         Add on
       </Text>
 
       {/* Add on Products Section */}
-      <YStack
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: 18,
-          marginLeft: 24,
-          marginRight: 24,
-        }}
-      >
-        <View
+        <YStack
           style={{
-            position: 'relative',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: 18,
+            marginLeft: 24,
+            marginRight: 24,
           }}
         >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/darren.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+            <View
+              style={{
+                position: 'relative',
+               }}
+              >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#FF3636"
+                  >
+                  Recommended
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/darren.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                  Oxean Uedora Jacket
+                 </Text>
 
-        <View
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $21.45
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
+
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+              <View
+                style={{
+                  position: 'relative',
+                  }}
+                >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#FF3636"
+                  >
+                  Recommended
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/skyblue-bag.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                    Vuki Handi Bag
+                </Text>
+
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $16.20
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
+        </YStack>
+
+      
+
+        <YStack
           style={{
-            position: 'relative',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: 18,
+            marginLeft: 24,
+            marginRight: 24,
           }}
         >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/skyblue-bag.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-      </YStack>
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+            <View
+              style={{
+                position: 'relative',
+               }}
+              >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#FF3636"
+                  >
+                  Recommended
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/darren.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                  Oxean Uedora Jacket
+                 </Text>
 
-      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Oxean Uedora Jacket
-          </Text>
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $21.45
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
 
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $21.45
-          </Text>
-        </View>
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+              <View
+                style={{
+                  position: 'relative',
+                  }}
+                >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#FF3636"
+                  >
+                  Recommended
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/skyblue-bag.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                    Vuki Handi Bag
+                </Text>
 
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Vuki Handi Bag
-          </Text>
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $16.20
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
+        </YStack>
 
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $16.20
-          </Text>
-        </View>
-      </YStack>
+      
 
-      <YStack
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: 18,
-          marginLeft: 24,
-          marginRight: 24,
-        }}
-      >
-        <View
+        <YStack
           style={{
-            position: 'relative',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: 18,
+            marginLeft: 24,
+            marginRight: 24,
           }}
         >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/darren.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+            <View
+              style={{
+                position: 'relative',
+               }}
+              >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#FF3636"
+                  >
+                  Recommended
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/darren.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                  Oxean Uedora Jacket
+                 </Text>
 
-        <View
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $21.45
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
+
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+              <View
+                style={{
+                  position: 'relative',
+                  }}
+                >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#FF3636"
+                  >
+                  Recommended
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/skyblue-bag.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                    Vuki Handi Bag
+                </Text>
+
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $16.20
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
+        </YStack>
+
+        <YStack
           style={{
-            position: 'relative',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: 18,
+            marginLeft: 24,
+            marginRight: 24,
           }}
         >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/skyblue-bag.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-      </YStack>
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+            <View
+              style={{
+                position: 'relative',
+               }}
+              >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#FF3636"
+                  >
+                  Recommended
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/darren.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                  Oxean Uedora Jacket
+                 </Text>
 
-      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Oxean Uedora Jacket
-          </Text>
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $21.45
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
 
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $21.45
-          </Text>
-        </View>
+          <XStack style={{ gap: 18, flexDirection: 'column' }}>
+              <View
+                style={{
+                  position: 'relative',
+                  }}
+                >
+                <Text
+                 style={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    fontSize: 14,
+                    fontWeight: '700',
+                    zIndex: 1,
+                    fontFamily: 'Inria Serif'
+                  }}
+                  color="#FF3636"
+                  >
+                  Recommended
+                  </Text>
+                <Image
+                  source={{ uri: '/Images/skyblue-bag.png' }}
+                  style={{ width: 182.5, zIndex: 0, height: 244 }}
+                  />
+                <Image
+                  source={{ uri: '/Images/heart-icon.png' }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      position: 'absolute',
+                      top: 207,
+                      left: 146,
+                      zIndex: 1,
+                    }}
+                    />
+              </View>
+              <View>
+                <Text fontSize={16} fontWeight="400" color="#202020" style={{ fontFamily: 'Inria Serif' }}>
+                    Vuki Handi Bag
+                </Text>
 
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Vuki Handi Bag
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $16.20
-          </Text>
-        </View>
-      </YStack>
-
-      <YStack
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: 18,
-          marginLeft: 24,
-          marginRight: 24,
-        }}
-      >
-        <View
-          style={{
-            position: 'relative',
-          }}
-        >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/darren.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-
-        <View
-          style={{
-            position: 'relative',
-          }}
-        >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/skyblue-bag.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-      </YStack>
-
-      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Oxean Uedora Jacket
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $21.45
-          </Text>
-        </View>
-
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Vuki Handi Bag
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $16.20
-          </Text>
-        </View>
-      </YStack>
-
-      <YStack
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: 18,
-          marginLeft: 24,
-          marginRight: 24,
-        }}
-      >
-        <View
-          style={{
-            position: 'relative',
-          }}
-        >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/darren.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-
-        <View
-          style={{
-            position: 'relative',
-          }}
-        >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              fontSize: 14,
-              fontWeight: '700',
-              zIndex: 1,
-            }}
-            color="#FF3636"
-          >
-            Recommended
-          </Text>
-          <Image
-            source={{ uri: '/Images/skyblue-bag.png' }}
-            style={{ width: 182.5, zIndex: 0, height: 244 }}
-          />
-          <Image
-            source={{ uri: '/Images/heart-icon.png' }}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              top: 207,
-              left: 146,
-              zIndex: 1,
-            }}
-          />
-        </View>
-      </YStack>
-
-      <YStack flexDirection="row" mx={24} mt={18} gap={38}>
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Oxean Uedora Jacket
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $21.45
-          </Text>
-        </View>
-
-        <View>
-          <Text fontSize={16} fontWeight="400" color="#202020">
-            Vuki Handi Bag
-          </Text>
-
-          <Text fontSize={14} fontWeight="400" style={{ marginTop: 8 }} color="#202020">
-            $16.20
-          </Text>
-        </View>
-      </YStack>
+                <Text fontSize={14} fontWeight="400" style={{ marginTop: 8, fontFamily: 'Inria Serif' }} color="#202020">
+                  $16.20
+                  <Text 
+                  style={{ fontSize: 12,
+                   fontWeight: '400', 
+                   color: 'rgba(32, 32, 32, 0.33)', 
+                   fontFamily: 'Inria Serif',
+                   marginLeft: 5,
+                   textDecorationLine: 'line-through'
+                    }}>
+                    $21.45
+                  </Text>
+                </Text>
+              </View>
+          </XStack>
+        </YStack>
 
       {/* Bottom Sheet */}
       <Modal
@@ -1276,7 +1418,6 @@ export function ProductScreen() {
             }}
           >
             <TouchableOpacity
-              onPress={() => setSheetVisible(false)}
               style={{
                 flexDirection: 'row',
                 justifyContent: 'center',
@@ -1287,6 +1428,7 @@ export function ProductScreen() {
               }}
             >
               <Text
+              onPress={() => setSheetVisible(false)}
                 style={{
                   width: 48,
                   height: 5,

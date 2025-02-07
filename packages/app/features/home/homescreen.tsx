@@ -2053,6 +2053,7 @@ export function HomeScreen() {
           />
         </View>
       </YStack>
+      
       <YStack flexDirection="row" mx={24} mt={18} gap={38}>
         <XStack flexDirection="column">
           <Text fontSize={16} fontWeight="400" color="#202020">
