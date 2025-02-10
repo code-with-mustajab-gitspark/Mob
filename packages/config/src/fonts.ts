@@ -1,45 +1,89 @@
-import { createInterFont } from '@tamagui/font-inter'
+import { createFont } from 'tamagui'
 
-export const headingFont = createInterFont({
+export const headingFont = createFont({
+  family: 'Inria Serif, serif',
   size: {
-    6: 15,
-  },
-  transform: {
-    6: 'uppercase',
-    7: 'none',
+    1: 12,
+    2: 14,
+    3: 16,
+    4: 18,
+    5: 20,
+    6: 24,
+    7: 28,
+    8: 32,
+    9: 36,
+    10: 40,
+    12: 48,
+    14: 56,
+    15: 60,
   },
   weight: {
-    6: '400',
-    7: '700',
-  },
-  color: {
-    6: '$colorFocus',
-    7: '$color',
+    4: '300',
+    5: '400',
+    6: '700',
   },
   letterSpacing: {
-    5: 2,
-    6: 1,
-    7: 0,
-    8: -1,
-    9: -2,
-    10: -3,
-    12: -4,
-    14: -5,
-    15: -6,
+    4: 0,
+    5: 0,
+    6: -1,
+  },
+  transform: {
+    6: 'none', // Remove uppercase transform
   },
   face: {
-    700: { normal: 'InterBold' },
+    300: { normal: 'InriaSerif-Light', italic: 'InriaSerif-LightItalic' },
+    400: { normal: 'InriaSerif-Regular', italic: 'InriaSerif-Italic' },
+    700: { normal: 'InriaSerif-Bold', italic: 'InriaSerif-BoldItalic' },
   },
 })
 
-export const bodyFont = createInterFont(
-  {
-    face: {
-      700: { normal: 'InterBold' },
-    },
+export const bodyFont = createFont({
+  family: 'Urbanist, sans-serif',
+  size: {
+    1: 12,
+    2: 14,
+    3: 16,
+    4: 18,
+    5: 20,
+    6: 24,
+    7: 28,
+    8: 32,
+    9: 36,
+    10: 40,
+    12: 48,
+    14: 56,
+    15: 60,
   },
-  {
-    sizeSize: (size) => Math.round(size * 1.1),
-    sizeLineHeight: (size) => Math.round(size * 1.1 + (size > 20 ? 10 : 10)),
-  }
-)
+  weight: {
+    1: '100',
+    2: '200',
+    3: '300',
+    4: '400',
+    5: '500',
+    6: '600',
+    7: '700',
+    8: '800',
+    9: '900',
+  },
+  letterSpacing: {
+    4: 0,
+    5: 0.5,
+    6: -0.5,
+  },
+  lineHeight: {
+    4: 22,
+    5: 24,
+    6: 28,
+  },
+  face: {
+    100: { normal: 'Urbanist-Thin' },
+    200: { normal: 'Urbanist-ExtraLight' },
+    300: { normal: 'Urbanist-Light' },
+    400: { normal: 'Urbanist-Regular' },
+    500: { normal: 'Urbanist-Medium' },
+    600: { normal: 'Urbanist-SemiBold' },
+    700: { normal: 'Urbanist-Bold' },
+    800: { normal: 'Urbanist-ExtraBold' },
+    900: { normal: 'Urbanist-Black' },
+  },
+})

@@ -1,7 +1,7 @@
 
 import { View, Text, Image } from 'react-native';
 
-export function StatusBar() {
+export function StatusBarz() {
     return (
         <View style={{
           flexDirection: 'row',
@@ -10,6 +10,7 @@ export function StatusBar() {
           paddingBottom: 9,
           paddingLeft: 23,
           paddingRight: 23,
+          backgroundColor: '#FFFBF2',
         }}>
             <Text style={{
               fontSize: 16,
@@ -42,4 +43,4 @@ export function StatusBar() {
     );
 };
 
-export default StatusBar;
+export default StatusBarz;

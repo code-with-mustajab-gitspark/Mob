@@ -5,7 +5,7 @@ import {
   View,
   Text,
 } from '@my/ui'
-import {StatusBar} from '../components/statusbar'
+import { StatusBarz } from '../components/statusbarz'
 import Slider from '../components/slider'
 import Bar from '../components/bar'
 
@@ -13,8 +13,8 @@ import Bar from '../components/bar'
 export function HomeScreen() {
   
     return (
-      <>
-      <StatusBar />
+      <View style={{ backgroundColor: '#FFFBF2' }}>
+      <StatusBarz />
       <View>
         <YStack style={{ paddingLeft: 24, paddingRight: 24 }}>
           <Text text="center"
@@ -66,7 +66,7 @@ export function HomeScreen() {
         </YStack>
       </View>
       <Bar />
-    </>
+    </View>
   )
 }
 
