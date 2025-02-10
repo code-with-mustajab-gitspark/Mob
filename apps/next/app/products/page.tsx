@@ -1,5 +1,5 @@
-const products = () => {
-  return <div>Products</div>;
-}
+'use client'
 
-export default products;
+import { ProductScreen } from 'app/features/product/product'
+
+export default ProductScreen

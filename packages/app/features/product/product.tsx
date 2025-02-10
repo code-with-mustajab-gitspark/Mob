@@ -388,7 +388,7 @@ export function ProductScreen({ pagesMode }: ProductScreenProps) {
               fontFamily: 'Inria Serif',
             }}
           >
-            Add to Cart
+            Add to Cart --
           </Button>
         </View>
 
